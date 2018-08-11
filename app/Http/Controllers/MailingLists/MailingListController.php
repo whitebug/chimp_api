@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\MailingLists;
 
+use App\Http\Requests\MailingLists\StoreMailingListRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
@@ -41,7 +42,7 @@ class MailingListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMailingListRequest $request)
     {
         //
     }
