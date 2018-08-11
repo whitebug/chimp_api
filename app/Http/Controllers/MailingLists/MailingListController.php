@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\MailingLists;
 
-use App\MailingList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 
 class MailingListController extends Controller
 {
@@ -15,9 +15,14 @@ class MailingListController extends Controller
      */
     public function index()
     {
-        $mailing_lists = MailingList::all();
+        $name = env('MAILCHIMP_API_USER');
+        $password = env('MAILCHIMP_API_KEY');
 
-        return $mailing_lists;
+        $client = new Client();
+        $res = $client->request('GET', 'https://us18.api.mailchimp.com/3.0/lists', [
+            'auth' => [$name, $password]
+        ]);
+        return json_decode((string) $res->getBody(), true);
     }
 
     /**
