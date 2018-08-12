@@ -24,8 +24,26 @@ class StoreMailingListRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'body' => 'required',
+            'name'=>'required',
+            'company' => 'required',
+            'address1' => 'required',
+            'address2' => '',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'country' => 'required',
+            'phone' => '',
+            'permission_reminder'=>'required',
+            'from_name' => 'required',
+            'from_email' => 'required',
+            'subject' => 'required',
+            'language' => 'required',
+            'notify_on_subscribe' => '',
+            'notify_on_unsubscribe' => '',
+            'email_type_option' => 'required',
+            'visibility' => '',
+            'double_optin'=>'',
+            'marketing_permissions'=>'',
         ];
     }
 }
