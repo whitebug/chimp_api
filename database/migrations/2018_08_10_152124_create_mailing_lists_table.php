@@ -25,7 +25,7 @@ class CreateMailingListsTable extends Migration
             $table->text('country');
             $table->text('phone')->nullable()->default(null);
             $table->text('permission_reminder');
-            $table->text('use_archive_bar');
+            $table->text('use_archive_bar')->nullable()->default(null);
             $table->text('from_name');
             $table->text('from_email');
             $table->text('subject')->nullable()->default(null);

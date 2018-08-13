@@ -82,7 +82,33 @@ class MailingListController extends Controller
         $mailing_list->marketing_permissions = $request->marketing_permissions;
         $mailing_list->save();
 
-        return Fractal::includes('author')->item($mailing_list, new MailingListTransformer);
+        $name = env('MAILCHIMP_API_USER');
+        $password = env('MAILCHIMP_API_KEY');
+        $appRoute = env('MAILCHIMP_API_ROUTE');
+
+        //$client = new Client(['base_uri' => $appRoute]);
+        $client = new Client(['base_uri' => $appRoute]);
+
+        try {
+            /*$response = $client->request('POST', 'lists', [
+                'auth' => [$name, $password],
+            ],[
+                'body' => $mailing_list
+            ]);*/
+
+            $response = $client->post('lists', [
+                'headers' => ['Content-type' => 'application/json'],
+                'auth' => [$name, $password],
+                'json' => $mailing_list,
+            ]);
+
+        } catch (GuzzleException $error) {
+            $responseCode = $error->getMessage();
+            return response()->json($responseCode);
+        }
+
+        //return Fractal::item($mailing_list, new MailingListTransformer);
+        return json_decode((string) $response->getBody(), true);
     }
 
     /**

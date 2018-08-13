@@ -36,7 +36,7 @@ class StoreMailingListRequest extends FormRequest
             'permission_reminder'=>'required',
             'from_name' => 'required',
             'from_email' => 'required',
-            'subject' => 'required',
+            'subject' => '',
             'language' => 'required',
             'notify_on_subscribe' => '',
             'notify_on_unsubscribe' => '',
