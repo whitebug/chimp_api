@@ -10,6 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use GuzzleHttp\Middleware;
 
 class MailingListController extends Controller
 {
